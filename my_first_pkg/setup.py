@@ -22,7 +22,8 @@ setup(
         'console_scripts': [
             'my_first_node = my_first_pkg.my_first_node:main',
             'sub = my_first_pkg.sub:main',
-            'pub = my_first_pkg.pub:main'
+            'pub = my_first_pkg.pub:main',
+            'cmd_pose = my_first_pkg.cmd_pose:main'
         ],
     },
 )
