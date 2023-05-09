@@ -43,7 +43,7 @@ class MultiSpawning(Node):
         response.x = x
         response.y = y
         response.theta = theta
-
+        
         return response
     
 def main(args = None):
