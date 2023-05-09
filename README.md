@@ -9,4 +9,17 @@ ros2 pkg create --build-type ament_python --node-name my_first_node my_first_pac
 # 사용자 정의 msg type을 생성해 사용하는 경우 
 ros2 pkg create --build-type ament_cmake my_first_package_msgs 
 
-```
+``` 
+2. 특정 pkg만 빌드하고 싶을 경우 
+
+```bash
+colcon build --packages-select my_first_package_msgs
+
+``` 
+
+3. msg, srv type을 확인하고 싶을 경우 
+
+```bash
+ros2 interface show my_first_package_msgs/srv/MultiSpawn
+
+``` 

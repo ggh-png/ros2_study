@@ -23,7 +23,8 @@ setup(
             'my_first_node = my_first_pkg.my_first_node:main',
             'sub = my_first_pkg.sub:main',
             'pub = my_first_pkg.pub:main',
-            'cmd_pose = my_first_pkg.cmd_pose:main'
+            'cmd_pose = my_first_pkg.cmd_pose:main',
+            'my_service_server = my_first_pkg.my_service_server:main'
         ],
     },
 )
