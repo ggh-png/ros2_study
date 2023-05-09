@@ -17,7 +17,10 @@ class MultiSpawning(Node):
         # 클라 sub 
         self.teleport = self.create_client(TeleportAbsolute, '/turtle1/teleport_absolute')
         self.spawn = self.create_client(Spawn, '/spawn')
+
+        # 터틀 텔포 서비스 메시지 
         self.req_teleport = TeleportAbsolute.Request()
+        # 터틀 소환 서비스 메시지 
         self.req_spawn = Spawn.Request()
         self.center_x = 5.54
         self.center_y = 5.54
