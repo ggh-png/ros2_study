@@ -3,7 +3,7 @@ from rclpy.node import Node
 
 from geometry_msgs.msg import Twist
 
-class TutlePub(Node):
+class TurtlePub(Node):
     def __init__(self):
         super().__init__('turtle_pub')
         self.publisher = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
@@ -19,7 +19,7 @@ class TutlePub(Node):
 
 def main(args=None):
     rp.init(args = args)
-    turtle_pub = TutlePub()
+    turtle_pub = TurtlePub()
     rp.spin(turtle_pub)
 
     turtle_pub.destroy_node()

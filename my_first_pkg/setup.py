@@ -24,7 +24,9 @@ setup(
             'sub = my_first_pkg.sub:main',
             'pub = my_first_pkg.pub:main',
             'cmd_pose = my_first_pkg.cmd_pose:main',
-            'my_service_server = my_first_pkg.my_service_server:main'
+            'my_service_server = my_first_pkg.my_service_server:main',
+            'dist_turtle_action_server = my_first_pkg.dist_turtle_action_server:main',
+            'my_multi_thread = my_first_pkg.my_multi_thread:main'
         ],
     },
 )

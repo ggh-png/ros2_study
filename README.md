@@ -23,3 +23,5 @@ colcon build --packages-select my_first_package_msgs
 ros2 interface show my_first_package_msgs/srv/MultiSpawn
 
 ``` 
+
+4. 한 노드에서 여러 콜백 함수가 작동될 경우 하나의 콜백 함수만 실행 되기에 이를 해결하기 위해 멀티 스레드를 사용한다. 
