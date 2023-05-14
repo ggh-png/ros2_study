@@ -20,8 +20,19 @@ colcon build --packages-select my_first_package_msgs
 3. msg, srv type을 확인하고 싶을 경우 
 
 ```bash
+
 ros2 interface show my_first_package_msgs/srv/MultiSpawn
 
 ``` 
 
 4. 한 노드에서 여러 콜백 함수가 작동될 경우 하나의 콜백 함수만 실행 되기에 이를 해결하기 위해 멀티 스레드를 사용한다. 
+
+5. 액션 서버에서 feedback 메시지를 보고싶을 경우 action send_goal --feedback 
+
+```bash
+
+ros2 action send_goal --feedback /dist_turtle my_first_package_msgs/action/DistTurtle "linear_x: 0.1
+angular_z: 0.1
+dist: 2.0" 
+
+```
