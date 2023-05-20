@@ -36,3 +36,26 @@ angular_z: 0.1
 dist: 2.0" 
 
 ```
+
+6. DDS 버그 :: 연결이 안됨  :: 포싱 문제 (gost posing)
+
+ros 프로세스 보기, 죽이는건 구글링 
+
+```bash
+ps -ef | grep ros
+```
+
+7. param 적용 
+
+```bash
+ros2 param load /turtlesim ./turtlesim.yaml
+```
+
+8. 코파일럿 사용해보자 - vscode extensions
+9. ros2 launch 구성 
+    1. launch 파일 생성 
+    2. [setup.py](http://setup.py) 수정 
+
+```bash
+ros2 launch my_first_pkg turtlesim_and_teleop.launch.py
+```
