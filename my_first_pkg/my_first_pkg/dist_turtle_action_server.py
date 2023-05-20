@@ -8,6 +8,8 @@ from rclpy.executors import MultiThreadedExecutor
 from turtlesim.msg import Pose
 from geometry_msgs.msg import Twist
 
+from rcl_interfaces.msg import SetParametersResult
+
 from my_first_package_msgs.action import DistTurtle
 # turtlesim vel 
 from my_first_pkg.sub import TurtleSub
@@ -39,6 +41,43 @@ class DistTurtleServer(Node):
         self.previous_pose = Pose()
         self.publisher = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
         self.action_server = ActionServer(self, DistTurtle, 'dist_turtle', self.execute_callback)
+        
+        
+        self.declare_parameter('quatile_time', 0.75)
+        self.declare_parameter('almost_goal_time', 0.95)
+
+
+
+        (quantile_time, almosts_time) = self.get_parameters(
+                                            ['quatile_time', 'almost_goal_time'])
+        self.quantile_time = quantile_time.value
+        self.almosts_time = almosts_time.value
+
+        # 에러 메시지 출력 
+        output_msg = "quantile_time is " + str(self.quantile_time) + ". "
+        output_msg = output_msg + "and almost_goal_time is " + str(self.almosts_time) + ". "
+        
+        self.get_logger().info(output_msg)
+
+        self.add_on_set_parameters_callback(self.parameter_callback)
+        #### 
+    def parameter_callback(self, params):
+        for param in params:
+            print(param.name, " is changed to ", param.value)
+
+            if param.name == 'quatile_time':
+                self.quantile_time = param.value
+            if param.name == 'almost_goal_time':
+                self.almosts_time = param.value
+
+        output_msg = "quantile_time is " + str(self.quantile_time) + ". "
+        output_msg = output_msg + "and almost_goal_time is " + str(self.almosts_time) + ". "
+        self.get_logger().info(output_msg)
+
+
+        return SetParametersResult(successful=True)
+
+
     # 이동거리 계산 
     def calc_diff_pose(self):
         # 첫 계산은 포함하지 않는다.
@@ -68,6 +107,15 @@ class DistTurtleServer(Node):
             goal_handle.publish_feedback(feedback_msg)
             # 총 이동거리 pub
             self.publisher.publish(msg)
+            # 로그 메시지 출력
+            tmp = feedback_msg.remained_dist - goal_handle.request.dist * self.quantile_time
+            tmp = abs(tmp)   
+
+            if tmp < 0.02:
+                output_msg = 'The turtle passes the ' + str(self.quantile_time) + ' point. '
+                output_msg = output_msg + ' : ' + str(tmp)
+                self.get_logger().info(output_msg)
+
             time.sleep(0.01)
             # 오차 범위가 0.2 미만이면 종료 
             if feedback_msg.remained_dist < 0.2:

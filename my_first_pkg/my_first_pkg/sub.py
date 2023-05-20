@@ -21,5 +21,6 @@ def main(args=None):
     TurtlesimSub.destroy_node()
     rp.shutdown()
 
+# 만약 메인 함수가 한번 실행이 되면 실행되지 않는 기능 
 if __name__ == '__main__':
     main()

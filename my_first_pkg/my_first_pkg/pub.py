@@ -6,7 +6,7 @@ from geometry_msgs.msg import Twist
 class TurtlePub(Node):
     def __init__(self):
         super().__init__('turtle_pub')
-        self.publisher = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
+        self.publisher = self.create_publisher(Twist, '/turtlesim/turtle1/cmd_vel', 10)
         period = 0.5
         self.timer = self.create_timer(period, self.timer_callback)
 
